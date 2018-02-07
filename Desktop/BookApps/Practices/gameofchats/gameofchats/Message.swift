@@ -1,0 +1,43 @@
+//
+//  Message.swift
+//  gameofchats
+//
+//  Created by 張健民 on 2017/8/12.
+//  Copyright © 2017年 CliffC. All rights reserved.
+//
+
+import UIKit
+import Firebase
+
+class Message: NSObject {
+    
+    var fromId: String?
+    var text: String?
+    var timestamp: NSNumber?
+    var toId: String?
+    var imageUrl: String?
+    var imageHeight: NSNumber?
+    var imageWidth: NSNumber?
+    
+    func chatPartnerId() -> String? {
+      
+        return fromId! == FIRAuth.auth()?.currentUser?.uid ? toId : fromId
+
+    }
+    
+    init(dictionary: [String: AnyObject]) {
+        super.init()
+        
+        fromId = dictionary["fromId"] as? String
+        text = dictionary["text"] as? String
+        timestamp = dictionary["fromId"] as? NSNumber
+        toId = dictionary["toId"] as? String
+        imageUrl = dictionary["imageUrl"] as? String
+
+        imageHeight = dictionary["imageHeight"] as? NSNumber
+        imageWidth = dictionary["imageWidth"] as? NSNumber
+
+        
+        
+    }
+}
